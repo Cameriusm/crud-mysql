@@ -21,7 +21,7 @@ function Popup(props) {
   };
 
   const updateInput = () => {
-    inputRows;
+    
   };
 
   return (
