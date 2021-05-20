@@ -38,19 +38,57 @@ const db = mysql.createConnection({
   database: "heroku_f6e8b29e185a486",
 });
 
-mysql: app.post("/getInfo", (req, res) => {
-  // console.log(req);
+////////////////////////// GET INFORMATION
 
+app.post("/getInfo", (req, res) => {
   const tableName = req.body.tableName;
-  // console.log(tableName);
-  // res.send(req);
   db.query(`SELECT * FROM ${tableName}`, (err, result) => {
     if (err) {
       console.log(err);
+      res.send([false]);
     } else {
       res.send(result);
     }
   });
+});
+
+///////////////////////// DELETE INFORMATION
+
+app.delete("/delete/:id", (req, res) => {
+  const id = req.params.id;
+  console.log(req.data);
+  console.log(req.body);
+  const tableName = req.body.tableName;
+  console.log(id, tableName);
+  db.query(
+    `DELETE FROM delivery_list WHERE ${tableName}_id = ${id}`,
+    [tableName, id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send([false, err.sqlMessage]);
+      } else {
+        console.log("done");
+        res.send(true);
+      }
+    }
+  );
+});
+
+//////////////////////////////// ADD ROW TO INFORMATION
+
+app.put("/update/:id", (req, res) => {
+  const id = req.params.id;
+
+  const tableName = req.body.tableName;
+  console.log(tableName);
+  // db.query(`SELECT * FROM ${tableName}`, (err, result) => {
+  //   if (err) {
+  //     console.log(err);
+  //   } else {
+  //     res.send(result);
+  //   }
+  // });
 });
 
 //
