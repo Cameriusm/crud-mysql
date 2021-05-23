@@ -37,8 +37,18 @@ function Table(props) {
       setInfo([deleteArray])
   }
 
-  const updateInfo = (id) => {
+  const updateInfo = (data) => {
 
+    const updateData = Object.fromEntries(data)
+    const updateArray = info[0].map(elem=> {
+      
+      if (Object.values(elem)[0] === data[0][1]) {
+        return updateData;
+      }
+      return elem
+    })
+    setInfo([updateArray])
+    
   }
 
   return (

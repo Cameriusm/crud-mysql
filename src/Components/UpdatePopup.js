@@ -6,6 +6,7 @@ function Popup(props) {
   const updateHeader = Object.entries(props.infoState[0][props.updId - 1]);
   const [inputRows, setInputRows] = useState(updateHeader);
 
+  console.log(props.infoState)
   console.log(inputRows);
   const updateHandler = () => {
     Axios.put(`http://localhost:3001/update/`, {
@@ -15,7 +16,7 @@ function Popup(props) {
       .then((response) => response.data)
       .then((result) => {
         console.log(result);
-        // props.updateInfo()
+        props.updateInfo(inputRows)
         props.closePopup()
       })
       .catch((error) => {
