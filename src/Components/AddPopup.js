@@ -15,7 +15,7 @@ function Popup(props) {
       .then((response) => response.data)
       .then((result) => {
         console.log(result);
-        // props.updateInfo()
+        
         props.closePopup()
       })
       .catch((error) => {

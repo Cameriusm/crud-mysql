@@ -14,10 +14,7 @@ function Table(props) {
     })
       .then((response) => response.data)
       .then((result) => {
-        console.log(result);
-
         if (result && result.length > 0) {
-          console.log(result);
           setInfo([result]);
           toggleShowPopup();
         } else {
@@ -34,6 +31,16 @@ function Table(props) {
     setShowPopup(!showPopup);
   };
 
+  const deleteInfo = (id) => {
+    const deleteArray = info[0].filter(elem=> {
+      return (Object.values(elem)[0]) !== +id})
+      setInfo([deleteArray])
+  }
+
+  const updateInfo = (id) => {
+
+  }
+
   return (
     <div>
       <div className="table-block">
@@ -44,7 +51,7 @@ function Table(props) {
         </div>
       </div>
       {showPopup ? (
-        <Popup text={props.name} closePopup={toggleShowPopup} date={info} />
+        <Popup text={props.name} closePopup={toggleShowPopup} date={info} deleteInfo={deleteInfo} updateInfo={updateInfo}/>
       ) : null}
     </div>
   );

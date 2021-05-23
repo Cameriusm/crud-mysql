@@ -10,9 +10,11 @@ function Popup(props) {
   const tableValues = Object.values(props.date[0]);
   const [updateId, setUpdateId] = useState(0);
   let updId = 0;
+  console.log(props.date);
+  const deleteHandler = (e) => {
+    const deleteId = e.target.attributes.value.value;
 
-  const deleteHandler = (id) => {
-    Axios.delete(`http://localhost:3001/delete/${id}`, {
+    Axios.delete(`http://localhost:3001/delete/${deleteId}`, {
       data: {
         tableName: props.text,
       },
@@ -22,6 +24,12 @@ function Popup(props) {
         console.log(result);
         if (result) {
           console.log("done");
+          console.log(deleteId)
+          if(props.date[0].length === 1) {
+            props.closePopup()
+          }
+          // if (props.date.length)
+          props.deleteInfo(deleteId)
         } else {
           alert("Ошибка операции" + result[1]);
         }
@@ -42,12 +50,11 @@ function Popup(props) {
     toggleShowUpdatePopup();
   };
 
-  let elemId = 0;
-
   return (
     <div className="popup">
       <div className="popup_inner">
         <div className="information-table">
+        <div className="information-table-inside">
           <h1>Table - {props.text}</h1>
           <table>
             <tr>
@@ -58,8 +65,9 @@ function Popup(props) {
               <td className="delete-button-header">Удалить</td>
             </tr>
             {tableValues.map((elem) => {
-              elemId++;
+             
               const tableRowValues = Object.values(elem);
+              const elemId = Object.values(elem)[0]
               return (
                 <tr>
                   {tableRowValues.map((e) => {
@@ -76,7 +84,7 @@ function Popup(props) {
                   <td
                     className="delete-button"
                     value={elemId}
-                    onClick={() => deleteHandler(elemId)}
+                    onClick={(e) => deleteHandler(e)}
                   >
                     Удалить
                   </td>
@@ -87,6 +95,7 @@ function Popup(props) {
           <div className="close-button">
             <button onClick={props.closePopup}>Закрыть</button>
           </div>
+          </div>
         </div>
       </div>
       {updatePopup ? (
@@ -95,6 +104,8 @@ function Popup(props) {
           closePopup={toggleShowUpdatePopup}
           updId={updateId}
           infoState={props.date}
+          updateInfo = {props.updateInfo}
+          
         />
       ) : null}
     </div>
