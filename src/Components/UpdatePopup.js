@@ -2,7 +2,7 @@ import "../App.css";
 import { useState } from "react";
 import Axios from "axios";
 
-function Popup(props) {
+function UpdatePopup(props) {
   const updateHeader = Object.entries(props.infoState[0][props.updId - 1]);
   const [inputRows, setInputRows] = useState(updateHeader);
 
@@ -73,4 +73,4 @@ function Popup(props) {
   );
 }
 
-export default Popup;
+export default UpdatePopup;
