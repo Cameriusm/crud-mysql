@@ -32,36 +32,47 @@ function Table(props) {
   };
 
   const deleteInfo = (id) => {
-    const deleteArray = info[0].filter(elem=> {
-      return (Object.values(elem)[0]) !== +id})
-      setInfo([deleteArray])
-  }
+    const deleteArray = info[0].filter((elem) => {
+      return Object.values(elem)[0] !== +id;
+    });
+    setInfo([deleteArray]);
+  };
 
   const updateInfo = (data) => {
-
-    const updateData = Object.fromEntries(data)
-    const updateArray = info[0].map(elem=> {
-      
+    const updateData = Object.fromEntries(data);
+    const updateArray = info[0].map((elem) => {
       if (Object.values(elem)[0] === data[0][1]) {
         return updateData;
       }
-      return elem
-    })
-    setInfo([updateArray])
-    
-  }
+      return elem;
+    });
+    setInfo([updateArray]);
+  };
+
+  const addInfo = (data) => {
+    data[0][1] = +data[0][1];
+    const updateData = Object.fromEntries(data);
+    console.log([...info, updateData]);
+    setInfo([[...info[0], updateData]]);
+  };
 
   return (
-    <div>
+    <div className="tables-blocks">
       <div className="table-block">
         <p>{props.name}</p>
         <div className="action-field">
-          <button onClick={() => getHandler()}>Просмотреть</button>
-          <button onClick={() => getHandler()}>Добавить</button>
+          <button onClick={() => getHandler()}>Управление</button>
         </div>
       </div>
       {showPopup ? (
-        <Popup text={props.name} closePopup={toggleShowPopup} date={info} deleteInfo={deleteInfo} updateInfo={updateInfo}/>
+        <Popup
+          text={props.name}
+          closePopup={toggleShowPopup}
+          date={info}
+          deleteInfo={deleteInfo}
+          updateInfo={updateInfo}
+          addInfo={addInfo}
+        />
       ) : null}
     </div>
   );

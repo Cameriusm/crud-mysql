@@ -2,23 +2,38 @@
   background-color: #e6f7f3;
   min-height: 100vh;
 }
+.tables-main {
+  padding-top: 15vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.tables-main-divs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 15px 15px;
+}
+
 .table-block {
-  margin-top: 30%;
+  /* margin-top: 30%; */
   background-color: #b4d4cc;
-  width: auto;
+  width: 185px;
   height: 150px;
   font-size: 22px;
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin: 0 15px;
+  margin: 0 25px;
   flex-wrap: wrap;
 
   justify-content: center;
   border: 0.5px solid black;
 }
 
-.table-block p {
+.table-block > p {
   font-family: Trebuchet MS, sans-serif;
   font-weight: 700;
 }
@@ -30,7 +45,7 @@
   margin: 0 5px;
 }
 .tables {
-  padding-top: 10%;
+  padding-top: 2%;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -59,14 +74,19 @@
 }
 .information-table {
   position: relative;
+
   height: auto;
-  height: auto;
-  border: 1px solid black;
+  width: auto;
+
   border-radius: 50px;
-  background-color: #f2fffc;
+  border: 1px solid rgb(0, 0, 0);
+  padding: 6px 0px;
+  background: #ccc;
+  overflow: auto;
 }
 .information-table-inside {
   height: 70vh;
+  border-radius: 8px;
   overflow-y: scroll;
 }
 /* .information-table-inside::-webkit-scrollbar-track {
@@ -161,6 +181,8 @@ h1 {
   text-align: center;
 }
 .update-popup-button button {
+  margin-top: 50px;
+  margin-bottom: 20px;
   font-size: 18px;
   width: 120px;
   cursor: pointer;
@@ -172,10 +194,33 @@ h1 {
   flex-wrap: wrap;
 }
 .input-fields input {
-  margin: 0 5px;
+  margin: 0 15px;
+}
+.update-header-labels {
+  margin-top: 30px;
+}
+.update-header-labels label {
+  margin: 0 15px;
 }
 .information-table-update-inside {
   padding: 25px;
   height: 50vh;
   overflow-y: scroll;
+}
+.add-button {
+  text-align: center;
+  margin: 25px auto 0 auto;
+}
+.add-button button {
+  font-size: 16px;
+  width: 95px;
+  cursor: pointer;
+  height: 35px;
+}
+.popup-buttons {
+  padding-bottom: 25px;
+  margin: 0 auto;
+  width: 50%;
+  display: flex;
+  justify-content: center;
 }

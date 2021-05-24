@@ -3,26 +3,31 @@ import { useState } from "react";
 import Axios from "axios";
 
 function UpdatePopup(props) {
-  const updateHeader = Object.entries(props.infoState[0][props.updId - 1]);
+  console.log(props.infoState[0][0]);
+  const tempArray = props.infoState[0].filter((elem) => {
+    console.log(elem);
+    return Object.values(elem)[0] === +props.updId;
+  });
+  console.log(props.infoState);
+  const updateHeader = Object.entries(tempArray[0]);
+
   const [inputRows, setInputRows] = useState(updateHeader);
 
-  console.log(props.infoState)
-  console.log(inputRows);
   const updateHandler = () => {
     Axios.put(`http://localhost:3001/update/`, {
       data: inputRows,
-      tableName: props.text
+      tableName: props.text,
     })
       .then((response) => response.data)
       .then((result) => {
         console.log(result);
-        props.updateInfo(inputRows)
-        props.closePopup()
+        props.updateInfo(inputRows);
+        props.closePopup();
       })
       .catch((error) => {
         alert("Ошибка операции: " + error);
         console.log(error);
-      })
+      });
   };
 
   const updateInput = (e) => {
@@ -40,33 +45,33 @@ function UpdatePopup(props) {
     <div className="popup">
       <div className="popup_inner">
         <div className="information-table">
-        <div className="information-table-update-inside">
-          <h1>Обновление данных в таблице - {props.text}</h1>
-          <div className="input-fields">
-            {inputRows.map((header) => {
-              return (
-                <div>
-                  <div className="update-header-labels">
-                    <label>{header[0]}</label>
+          <div className="information-table-update-inside">
+            <h1>Обновление данных в таблице - {props.text}</h1>
+            <div className="input-fields">
+              {inputRows.map((header) => {
+                return (
+                  <div>
+                    <div className="update-header-labels">
+                      <label>{header[0]}</label>
+                    </div>
+                    <input
+                      name={header[0]}
+                      value={header[1]}
+                      onChange={(e) => updateInput(e)}
+                    />
                   </div>
-                  <input
-                    name={header[0]}
-                    value={header[1]}
-                    onChange={(e) => updateInput(e)}
-                  />
-                </div>
-              );
-            })}
-          </div>
-          <div>
-            <div className="update-popup-button">
-              <button onClick={() => updateHandler()}>Обновить</button>
+                );
+              })}
             </div>
-            <div className="close-button">
-              <button onClick={props.closePopup}>Закрыть</button>
+            <div>
+              <div className="update-popup-button">
+                <button onClick={() => updateHandler()}>Обновить</button>
+              </div>
+              <div className="close-button">
+                <button onClick={props.closePopup}>Закрыть</button>
+              </div>
             </div>
           </div>
-        </div>
         </div>
       </div>
     </div>
