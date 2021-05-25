@@ -61,7 +61,9 @@ function Table(props) {
       <div className="table-block">
         <p>{props.name}</p>
         <div className="action-field">
-          <button onClick={() => getHandler()}>Управление</button>
+          <button className=" btn btn-success" onClick={() => getHandler()}>
+            Управление
+          </button>
         </div>
       </div>
       {showPopup ? (

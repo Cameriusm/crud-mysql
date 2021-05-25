@@ -65,10 +65,17 @@ function UpdatePopup(props) {
             </div>
             <div>
               <div className="update-popup-button">
-                <button onClick={() => updateHandler()}>Обновить</button>
+                <button
+                  className=" btn btn-success"
+                  onClick={() => updateHandler()}
+                >
+                  Обновить
+                </button>
               </div>
               <div className="close-button">
-                <button onClick={props.closePopup}>Закрыть</button>
+                <button className=" btn btn-success" onClick={props.closePopup}>
+                  Закрыть
+                </button>
               </div>
             </div>
           </div>

@@ -99,10 +99,17 @@ function Popup(props) {
             </table>
             <div className="popup-buttons">
               <div className="add-button">
-                <button onClick={() => closeAddPopup()}>Добавить</button>
+                <button
+                  className=" btn btn-success"
+                  onClick={() => closeAddPopup()}
+                >
+                  Добавить
+                </button>
               </div>
               <div className="close-button">
-                <button onClick={props.closePopup}>Закрыть</button>
+                <button className=" btn btn-success" onClick={props.closePopup}>
+                  Закрыть
+                </button>
               </div>
             </div>
           </div>
